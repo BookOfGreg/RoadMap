@@ -1,0 +1,10 @@
+motorway;24;AB
+motorway;17;BC
+motorway;23;CE
+dual carriageway;25;CD
+dual carriageway;9;EH
+dual carriageway;30;GH
+other road;20;BF
+other road;15;DE
+other road;17;CG
+other road;29;FG
