@@ -45,15 +45,15 @@ public abstract class Vehicle
         return distanceTraveled;//
     }
     
-    public boolean setDistanceTraveled(float distance)
-    {
-        distanceTraveled = distance;
-        return true;
-    }
-    
     public boolean setTarget(char newTarget)
     {
         target = newTarget;
+        return true;
+    }
+    
+    public boolean travel()
+    {
+        distanceTraveled+=velocity;
         return true;
     }
 }

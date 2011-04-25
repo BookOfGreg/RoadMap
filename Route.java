@@ -44,12 +44,17 @@ public abstract class Route
     
     public ArrayList<Vehicle> moveVehicles()
     {
+        ArrayList<Vehicle> vList = new ArrayList<Vehicle>();
         for (Vehicle v: vehiclesOnRoad)
         {
-            
+            v.travel();
+            if (v.getDistanceTraveled()>=length)
+            {
+                vList.add(v); //Might cause problems removing v in middle of for loop of v.
+            }
             //move them
         }
-        return null;
+        return vList;
     }
     
     public boolean matchingNode(char node)

@@ -18,6 +18,7 @@ public class World
      */
     public boolean loadRoutes()
     {
+        //
         return true;
     }
     
@@ -50,7 +51,13 @@ public class World
                 int sleep = (int)(MS_PER_FRAME - tickTime);
                 Thread.currentThread().sleep(sleep);
             }
+            render();
         }
+    }
+    
+    public void render()
+    {
+        //send stuff to view.
     }
     
     public void update()
