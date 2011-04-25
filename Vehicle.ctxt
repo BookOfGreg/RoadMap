@@ -1,4 +1,18 @@
 #BlueJ class context
-comment0.params=amount
-comment0.target=boolean\ addCost(float)
-numComments=1
+comment0.params=
+comment0.target=Vehicle()
+comment1.params=amount
+comment1.target=boolean\ addCost(float)
+comment2.params=
+comment2.target=java.lang.String\ getRegistration()
+comment3.params=
+comment3.target=float\ getTotalCost()
+comment4.params=
+comment4.target=char\ getTarget()
+comment5.params=
+comment5.target=float\ getDistanceTraveled()
+comment6.params=distance
+comment6.target=boolean\ setDistanceTraveled(float)
+comment7.params=newTarget
+comment7.target=boolean\ setTarget(char)
+numComments=8

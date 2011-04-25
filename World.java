@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 /**
  * Write a description of class World here.
  * 
@@ -7,9 +8,10 @@ import java.util.ArrayList;
  */
 public class World
 {
-    private ArrayList<Vehicle> vehicles;
+    private ArrayList<Vehicle> vehiclePool;
     private ArrayList<Route> routes;
     private final float MS_PER_FRAME = (1000 / 25);
+    private Random rand;
 
     /**
      * Creates the graph of routes from file.
@@ -24,6 +26,7 @@ public class World
      */
     public World()
     {
+        rand = new Random();
         loadRoutes();
         try{
             run();
@@ -39,8 +42,7 @@ public class World
         boolean quit = false;
         while(!quit)
         {
-            controllerUpdate();
-            viewUpdate();
+            update();
             //framerate
             long tickTime = System.currentTimeMillis() - startTime;
             if (tickTime < MS_PER_FRAME)
@@ -51,16 +53,45 @@ public class World
         }
     }
     
-    public boolean controllerUpdate()
+    public void update()
     {
-        //
-        return true;
+        moveVehicles();
+        addVehicles();
     }
     
-    public boolean viewUpdate()
+    public void moveVehicles()
     {
-        //
-        return true;
+        for (Route r:routes)
+        {
+            ArrayList<Vehicle> changingSection = r.moveVehicles();
+            /*
+             * get where vehicle is, check all sects for match, random pick sect, set target to other char and add to sect.
+             */
+            for (Vehicle v:changingSection)
+            {
+                char node = v.getTarget();
+                ArrayList<Route> matchingSect = new ArrayList<Route>();
+                for (Route sect:routes)
+                {
+                    if (sect.matchingNode(node))
+                    {
+                        matchingSect.add(sect);
+                    }
+                }
+                matchingSect.get(rand.nextInt(matchingSect.size())).addVehicle(v,node);
+            }
+        }
+    }
+    
+    public void addVehicles()
+    {
+        for (Vehicle v:vehiclePool)
+        {
+            if (rand.nextFloat()>0.92)
+            {
+                routes.get(rand.nextInt(routes.size())).addVehicle(v,rand.nextInt(2));
+            }
+        }
     }
     
     public static void main(String [ ] args)

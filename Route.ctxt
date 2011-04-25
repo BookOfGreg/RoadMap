@@ -1,2 +1,12 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=java.util.ArrayList\ getVehicles()
+comment1.params=v\ start
+comment1.target=boolean\ addVehicle(Vehicle,\ int)
+comment2.params=v\ node
+comment2.target=boolean\ addVehicle(Vehicle,\ char)
+comment3.params=
+comment3.target=java.util.ArrayList\ moveVehicles()
+comment4.params=node
+comment4.target=boolean\ matchingNode(char)
+numComments=5
