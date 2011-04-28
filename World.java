@@ -86,6 +86,7 @@ public class World
                     }
                 }
                 matchingSect.get(rand.nextInt(matchingSect.size())).addVehicle(v,node);
+                //write sect data
             }
         }
     }
@@ -97,6 +98,7 @@ public class World
             if (rand.nextFloat()>0.92)
             {
                 routes.get(rand.nextInt(routes.size())).addVehicle(v,rand.nextInt(2));
+                //write sect data
             }
         }
     }

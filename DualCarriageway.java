@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class DualCarrigeway here.
+ * Write a description of class DualCarriageway here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class DualCarrigeway extends Route
+public class DualCarriageway extends Route
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class DualCarrigeway
+     * Constructor for objects of class DualCarriageway
      */
-    public DualCarrigeway()
+    public DualCarriageway()
     {
         // initialise instance variables
         x = 0;

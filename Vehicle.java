@@ -7,7 +7,7 @@
  */
 public abstract class Vehicle
 {    
-    private String REGISTRATION;
+    private String registration;
     private float totalCost;
     private float velocity; //km per minute
     private char target;
@@ -15,7 +15,7 @@ public abstract class Vehicle
 
     public Vehicle()
     {
-        REGISTRATION = "";
+        registration = "";
         totalCost = 0;
     }
     
@@ -27,7 +27,7 @@ public abstract class Vehicle
     
     public String getRegistration()
     {
-        return REGISTRATION;
+        return registration;
     }
     
     public float getTotalCost()
@@ -54,6 +54,12 @@ public abstract class Vehicle
     public boolean travel()
     {
         distanceTraveled+=velocity;
+        return true;
+    }
+    
+    public boolean setRegistration(String reg)
+    {
+        registration = reg;
         return true;
     }
 }

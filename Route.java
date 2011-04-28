@@ -20,6 +20,30 @@ public abstract class Route
         return vehiclesOnRoad;
     }
     
+    public boolean setLength(int l)
+    {
+        //
+        return true;
+    }
+    
+    public boolean setNodes(String s)
+    {
+        //
+        return true;
+    }
+    
+    private boolean setNode1(char c)
+    {
+        //
+        return true;
+    }
+    
+    private boolean setNode2(char c)
+    {
+        //
+        return true;
+    }
+    
     public boolean addVehicle(Vehicle v,int start)
     {
         if (start == 0){
@@ -51,8 +75,8 @@ public abstract class Route
             if (v.getDistanceTraveled()>=length)
             {
                 vList.add(v); //Might cause problems removing v in middle of for loop of v.
+                //write sect data
             }
-            //move them
         }
         return vList;
     }

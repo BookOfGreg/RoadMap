@@ -15,4 +15,6 @@ comment6.params=newTarget
 comment6.target=boolean\ setTarget(char)
 comment7.params=
 comment7.target=boolean\ travel()
-numComments=8
+comment8.params=reg
+comment8.target=boolean\ setRegistration(java.lang.String)
+numComments=9
