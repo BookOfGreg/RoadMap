@@ -22,25 +22,26 @@ public abstract class Route
     
     public boolean setLength(int l)
     {
-        //
+        length = l;
         return true;
     }
     
     public boolean setNodes(String s)
     {
-        //
+        setNode1(s.charAt(0));
+        setNode2(s.charAt(1));
         return true;
     }
     
     private boolean setNode1(char c)
     {
-        //
+        node1 = c;
         return true;
     }
     
     private boolean setNode2(char c)
     {
-        //
+        node2 = c;
         return true;
     }
     
@@ -51,6 +52,7 @@ public abstract class Route
         }else{
             v.setTarget(node2);
         }
+        //v.velocity = selectSpeed(); //going to need to typecast.
         vehiclesOnRoad.add(v);
         return true;
     }
