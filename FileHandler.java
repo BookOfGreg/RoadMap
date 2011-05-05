@@ -196,7 +196,7 @@ public abstract class FileHandler
             if (s.next().equals(reg)){
                 s.next();//section
                 s.next();//start time
-                if (s.next() == null){
+                if (!s.hasNext()){
                     line = line + time;
                     break outerloop;
                 }

@@ -121,6 +121,7 @@ public class World
             {
                 updateTime += updateLength;
                 update();
+                tickNo++;
             }
             //framerate
             if  (currentTime >= tickTime)
@@ -128,7 +129,6 @@ public class World
                 tickTime += MS_PER_FRAME;
                 worldView.render(routes,time(tickNo));
             }
-            tickNo++;
         }
     }
 

@@ -13,4 +13,9 @@ USER INSTRUCTIONS:
 (1)Run "void main (String args[])" in the world class.
 (2)Select Segments.txt
 (3)Select vehicles.txt
+
 The program will show the vehicles moving around and generate a SegmentsData.txt as it runs.
+
+The program can have unlimited nodes, just keep adding them to Segments.txt
+
+If you pause the program in the debugger and then continue running it, the program will try to catch up on the missed time.
