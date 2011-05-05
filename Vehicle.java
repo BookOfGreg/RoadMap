@@ -5,18 +5,35 @@
  * @author Greg Myers
  * @version 0
  */
-public abstract class Vehicle
+public class Vehicle
 {    
     private String registration;
     private float totalCost;
-    private float velocity; //km per minute
+    private double velocity; //miles per second
     private char target;
-    private float distanceTraveled;
+    private double distanceTraveled;
+    private String type;
 
+    public String getType()
+    {
+        return type;
+    }
+    
+    public void setSpeed(double s)
+    {
+        velocity = s;
+        distanceTraveled = 0;
+    }
+    
     public Vehicle()
     {
         registration = "";
         totalCost = 0;
+    }
+    
+    public void setType(String t)
+    {
+        type = t;
     }
     
     public boolean addCost(float amount)
@@ -40,7 +57,7 @@ public abstract class Vehicle
         return target;
     }
     
-    public float getDistanceTraveled()
+    public double getDistanceTraveled()
     {
         return distanceTraveled;//
     }
@@ -53,7 +70,7 @@ public abstract class Vehicle
     
     public boolean travel()
     {
-        distanceTraveled+=velocity;
+        distanceTraveled+=velocity; /// THIS IS MASSIVE
         return true;
     }
     

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=newX\ newY
+comment0.target=Point(double,\ double)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Point\r\n
+comment1.params=
+comment1.target=double\ getY()
+comment2.params=
+comment2.target=double\ getX()
+comment3.params=newX\ newY
+comment3.target=void\ setLocation(double,\ double)
+numComments=4

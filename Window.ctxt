@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Window()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Window\r\n
+comment1.params=routes\ time
+comment1.target=boolean\ render(java.util.ArrayList,\ java.lang.String)
+numComments=2

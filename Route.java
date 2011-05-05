@@ -1,94 +1,108 @@
 import java.util.ArrayList;
+
 /**
- * Abstract class Route - write a description of the class here
+ * class Route - write a description of the class here
  * 
  * @author Greg Myers
  * @version 0
  */
-public abstract class Route
+public class Route
 {
+    private Node node1;
+    private Node node2;
+
     private int length;
-    private char node1;
-    private char node2;
     private String type;
     private int speedPrivate;
     private int speedCommercial;
     private ArrayList<Vehicle> vehiclesOnRoad;
-    
+
+    public int getSpeed(String t)
+    {
+        return 0;
+    }
+
+    public boolean hasPoints()
+    {
+        if ((node1.hasPoint()) && (node2.hasPoint()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int getLength()
+    {
+        return length;
+    }
+
+    public Route()
+    {
+        vehiclesOnRoad = new ArrayList<Vehicle>();
+    }
+
     public ArrayList<Vehicle> getVehicles()
     {
         return vehiclesOnRoad;
     }
-    
-    public boolean setLength(int l)
+
+    public void setLength(int l)
     {
         length = l;
-        return true;
     }
-    
-    public boolean setNodes(String s)
+
+    public void setNodes(Node n1,Node n2)
     {
-        setNode1(s.charAt(0));
-        setNode2(s.charAt(1));
-        return true;
+        node1 = n1;
+        node2 = n2;
     }
-    
-    private boolean setNode1(char c)
+
+    public char otherNode(char node)
     {
-        node1 = c;
-        return true;
-    }
-    
-    private boolean setNode2(char c)
-    {
-        node2 = c;
-        return true;
-    }
-    
-    public boolean addVehicle(Vehicle v,int start)
-    {
-        if (start == 0){
-            v.setTarget(node1);
-        }else{
-            v.setTarget(node2);
+        if (node == node1.getName())
+        {
+            return node2.getName();
         }
-        //v.velocity = selectSpeed(); //going to need to typecast.
-        vehiclesOnRoad.add(v);
-        return true;
-    }
-    
-    public boolean addVehicle(Vehicle v, char node)
-    {
-        if (node == node1){
-            v.setTarget(node2);
-        }else{
-            v.setTarget(node1);
+        else 
+        {
+            return node1.getName();
         }
-        vehiclesOnRoad.add(v);
-        return true;
     }
-    
-    public ArrayList<Vehicle> moveVehicles()
+
+    public ArrayList<Vehicle> moveVehicles(String time)
     {
         ArrayList<Vehicle> vList = new ArrayList<Vehicle>();
-        for (Vehicle v: vehiclesOnRoad)
-        {
-            v.travel();
-            if (v.getDistanceTraveled()>=length)
+        if (vehiclesOnRoad.size()>0){
+            for (int i = 0; i < vehiclesOnRoad.size();i++)
             {
-                vList.add(v); //Might cause problems removing v in middle of for loop of v.
-                //write sect data
+                vehiclesOnRoad.get(i).travel();
+                if (vehiclesOnRoad.get(i).getDistanceTraveled()>=length)
+                {
+                    FileHandler.writeEndSectData(vehiclesOnRoad.get(i).getRegistration(),time);
+                    vList.add(vehiclesOnRoad.remove(i));
+                }
             }
+            return vList;
         }
-        return vList;
+        return null;
     }
-    
+
     public boolean matchingNode(char node)
     {
-        if ((node == node1)||(node == node2)){
+        if ((node == node1.getName())||(node == node2.getName())){
             return true;
         }else{
             return false;
         }
+    }
+
+    public Node getNode1()
+    {
+        return node1;
+    }
+
+    public Node getNode2()
+    {
+        return node2;
     }
 }

@@ -13,7 +13,7 @@ public abstract class FileHandler
     /*
      * code based off the SuperSim project, based off SimpleIO
      */
-    public ArrayList<Route> loadRoutes()
+    public static ArrayList<Route> loadRoutes()
     {
         ArrayList<Route> routes = new ArrayList<Route>();
 
@@ -21,6 +21,7 @@ public abstract class FileHandler
         String currentLine;
         BufferedReader reader;
         File file = getFile("Select Segments.txt");
+        ArrayList<String> nodeOrder = new ArrayList<String>();
         if (file != null){
             try {
                 reader = new BufferedReader(new FileReader(file));
@@ -41,7 +42,7 @@ public abstract class FileHandler
                             r = new OtherRoad();
                         }
                         r.setLength(s.nextInt());
-                        r.setNodes(s.next());
+                        nodeOrder.add(s.next());
                         routes.add(r);
                     }
                     catch(Exception e){
@@ -55,10 +56,62 @@ public abstract class FileHandler
                 System.err.println("TextReader: Problem opening file for reading: "+ file.getAbsolutePath());
             }
         }
+        //for each string, check if char is unique and if not make node.
+        ArrayList<Node> uniqueNodes = new ArrayList<Node>();
+        for (String s:nodeOrder)
+        {
+            boolean found = false;
+            outerLoop:
+            for (Node n:uniqueNodes)
+            {
+                if (s.charAt(0)==n.getName())
+                {
+                    found = true;
+                    break outerLoop;
+                }
+            }
+            if (!found)
+            {
+                uniqueNodes.add(new Node(s.charAt(0)));
+            }
+            //repeated code
+            found = false;
+            outerLoop:
+            for (Node n:uniqueNodes)
+            {
+                if (s.charAt(1)==n.getName())
+                {
+                    found = true;
+                    break outerLoop;
+                }
+            }
+            if (!found)
+            {
+                uniqueNodes.add(new Node(s.charAt(1)));
+            }
+        }
+        //add nodes to routes
+        Node n1 = null;
+        Node n2 = null;
+        for (int i = 0; i < routes.size();i++)
+        {
+            for (Node n:uniqueNodes)
+            {
+                if (n.getName()==nodeOrder.get(i).charAt(0))
+                {
+                    n1=n;
+                }
+                else if (n.getName()==nodeOrder.get(i).charAt(1))
+                {
+                    n2=n;
+                }
+            }
+            routes.get(i).setNodes(n1,n2);
+        }
         return routes;
     }
 
-    public ArrayList<Vehicle> loadVehicles()
+    public static ArrayList<Vehicle> loadVehicles()
     {
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 
@@ -79,9 +132,11 @@ public abstract class FileHandler
                         String type = s.next();
                         if (type.equals("private car")){
                             r = new Private();
+                            r.setType("private");
                         }
                         else{
                             r = new Commercial();
+                            r.setType("commercial");
                         }
                         r.setRegistration(registration);
                         r.addCost(s.nextFloat());
@@ -105,7 +160,7 @@ public abstract class FileHandler
     {
         //EOF, write reg, write sect, write time
         try{
-            FileWriter myFileWriter = new FileWriter("data/SegmentData.txt",true);
+            FileWriter myFileWriter = new FileWriter("SegmentData.txt",true);
             BufferedWriter myBufferedWriter = new BufferedWriter(myFileWriter);
             String line = reg+";"+sect+";"+time+":";
             myBufferedWriter.write(line);
@@ -123,7 +178,7 @@ public abstract class FileHandler
     {
         ArrayList<String> sectData = new ArrayList<String>();;
         try{
-            BufferedReader reader = new BufferedReader(new FileReader("data/SegmentData.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("SegmentData.txt"));
             boolean open = true;
             String currentLine = readLine(open,reader);
             while (currentLine != null){
@@ -137,12 +192,11 @@ public abstract class FileHandler
 
         outerloop:
         for (String line:sectData){
-
             Scanner s = new Scanner(line).useDelimiter("\\s*;\\s*");
             if (s.next().equals(reg)){
                 s.next();//section
                 s.next();//start time
-                if (s.next() != null){
+                if (s.next() == null){
                     line = line + time;
                     break outerloop;
                 }

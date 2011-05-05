@@ -10,3 +10,7 @@ VERSION or DATE:
 HOW TO START THIS PROJECT:
 AUTHORS: Greg Myers
 USER INSTRUCTIONS:
+(1)Run "void main (String args[])" in the world class.
+(2)Select Segments.txt
+(3)Select vehicles.txt
+The program will show the vehicles moving around and generate a SegmentsData.txt as it runs.

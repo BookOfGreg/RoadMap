@@ -1,2 +1,6 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=Motorway()
+comment1.params=type
+comment1.target=int\ getSpeed(java.lang.String)
+numComments=2
