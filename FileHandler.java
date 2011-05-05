@@ -156,13 +156,25 @@ public abstract class FileHandler
         return vehicles;
     }
 
+    public static boolean clearSectData()
+    {
+        try{
+            FileWriter myFileWriter = new FileWriter("SegmentData.txt",false);
+            BufferedWriter myBufferedWriter = new BufferedWriter(myFileWriter);
+            myBufferedWriter.write("Registration;Section;Start time,End time");
+        }
+        catch(Exception e){
+            System.err.println("Problem overwriting file.");
+        }
+        return true;
+    }
+
     public static boolean writeStartSectData(String reg, String sect, String time)
     {
-        //EOF, write reg, write sect, write time
         try{
             FileWriter myFileWriter = new FileWriter("SegmentData.txt",true);
             BufferedWriter myBufferedWriter = new BufferedWriter(myFileWriter);
-            String line = reg+";"+sect+";"+time+":";
+            String line = reg+";"+sect+";"+time;
             myBufferedWriter.write(line);
             myBufferedWriter.newLine();
             myBufferedWriter.close();
@@ -176,7 +188,7 @@ public abstract class FileHandler
 
     public static boolean writeEndSectData(String reg, String time)
     {
-        ArrayList<String> sectData = new ArrayList<String>();;
+        ArrayList<String> sectData = new ArrayList<String>();
         try{
             BufferedReader reader = new BufferedReader(new FileReader("SegmentData.txt"));
             boolean open = true;
@@ -191,16 +203,30 @@ public abstract class FileHandler
         }
 
         outerloop:
-        for (String line:sectData){
-            Scanner s = new Scanner(line).useDelimiter("\\s*;\\s*");
+        for (int i = 0; i < sectData.size();i++){
+            Scanner s = new Scanner(sectData.get(i)).useDelimiter("\\s*;\\s*");
             if (s.next().equals(reg)){
                 s.next();//section
                 s.next();//start time
                 if (!s.hasNext()){
-                    line = line + time;
+                    String line = sectData.remove(i);
+                    line = line +";"+ time;
+                    sectData.add(i,line);
                     break outerloop;
                 }
             }
+        }
+        try{
+            FileWriter myFileWriter = new FileWriter("SegmentData.txt",false);
+            BufferedWriter myBufferedWriter = new BufferedWriter(myFileWriter);
+            for (String line:sectData){
+                myBufferedWriter.write(line);
+                myBufferedWriter.newLine();
+            }
+            myBufferedWriter.close();
+        }
+        catch(Exception e){
+            System.err.println("Problem writing to file.");
         }
         return true;
     }

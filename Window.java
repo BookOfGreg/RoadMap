@@ -33,7 +33,7 @@ public class Window extends JFrame
             g.setColor(Color.white);
             g.fillRect(0,0,800,600);
             g.setColor(Color.black);
-            g.drawString(time, 10, 10);
+            g.drawString(time, 50, 50);
             for (Route r:routes)
             {
                 g.setColor(Color.black);

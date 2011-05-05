@@ -102,7 +102,7 @@ public class World
 
     public int updateSelect()
     {
-        return 100;//stub
+        return 10;//stub
     }
 
     public void run(int updateLength) throws InterruptedException
@@ -113,6 +113,7 @@ public class World
 
         boolean quit = false;
         tickNo=0;
+        FileHandler.clearSectData();
         while((!quit)&&(tickNo<86400))
         {
             //1 tick is 1 second. This is unchangable.
