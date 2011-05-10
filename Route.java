@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 /**
- * class Route - write a description of the class here
+ * Route consists of 2 nodes and the distance between them. 
+ * Subclasses have different speeds based on the type of vehicle on them.
  * 
  * @author Greg Myers
- * @version 0
+ * @version 10/05/2011
  */
 public class Route
 {
@@ -12,12 +13,22 @@ public class Route
     private Node node2;
 
     private int length;
-    private String type;
+    protected String type;
     private int speedPrivate;
     private int speedCommercial;
     private ArrayList<Vehicle> vehiclesOnRoad;
 
+    public String getType()
+    {
+        return type;
+    }
+    
     public int getSpeed(String t)
+    {
+        return 0;
+    }
+    
+    public int getRate(String t)
     {
         return 0;
     }
@@ -35,9 +46,15 @@ public class Route
     {
         return length;
     }
-
+    
     public Route()
     {
+        vehiclesOnRoad = new ArrayList<Vehicle>();
+    }
+
+    public Route(String t)
+    {
+        type = t;
         vehiclesOnRoad = new ArrayList<Vehicle>();
     }
 

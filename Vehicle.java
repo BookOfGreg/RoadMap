@@ -1,15 +1,15 @@
 
 /**
- * Abstract class Vehicle - write a description of the class here
+ * Vehicle has a target, a speed and a distance traveled.
  * 
  * @author Greg Myers
- * @version 0
+ * @version 1
  */
 public class Vehicle
 {    
     private String registration;
-    private float totalCost;
-    private double velocity; //miles per second
+    protected float totalCost;
+    protected double velocity; //miles per second
     private char target;
     private double distanceTraveled;
     private String type;
@@ -34,6 +34,12 @@ public class Vehicle
     public void setType(String t)
     {
         type = t;
+    }
+    
+    public boolean addCost(String t, float amount,int distance)
+    {
+        totalCost+=amount;
+        return true;
     }
     
     public boolean addCost(float amount)
@@ -70,7 +76,7 @@ public class Vehicle
     
     public boolean travel()
     {
-        distanceTraveled+=velocity; /// THIS IS MASSIVE
+        distanceTraveled+=velocity;
         return true;
     }
     

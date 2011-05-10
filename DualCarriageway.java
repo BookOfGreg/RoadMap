@@ -2,17 +2,37 @@ import java.util.ArrayList;
 /**
  * Write a description of class DualCarriageway here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Greg Myers
+ * @version 1
  */
 public class DualCarriageway extends Route
 {
     private int speedPrivate = 60;
     private int speedCommercial = 50;
+    private int costPrivate = 1;
+    private int costCommercial = 2;
 
+    public DualCarriageway(String t)
+    {
+        type = t;
+    }
+    
     public DualCarriageway()
     {
         //
+    }
+    
+    @Override
+    public int getRate(String t)
+    {
+        if (t.equals("private"))
+        {
+            return costPrivate;
+        }
+        else
+        {
+            return costCommercial;
+        }
     }
     
     @Override

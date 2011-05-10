@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Node here.
+ * Graph node, consists of a point and a char for a name.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Greg Myers
+ * @version 1
  */
 public class Node
 {

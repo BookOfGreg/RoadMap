@@ -2,4 +2,6 @@
 comment0.params=
 comment0.target=Commercial()
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Commercial\r\n
-numComments=1
+comment1.params=t\ amount\ distance
+comment1.target=boolean\ addCost(java.lang.String,\ float,\ int)
+numComments=2

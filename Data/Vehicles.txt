@@ -1,4 +1,4 @@
-SP05 XDF;private car;23.78
-X324 TFG;private car;15.66
-FG15 AAA;commercial;34.99
-AB00 CDE;commercial;10.54
+SP05 XDF;private car;151.65
+X324 TFG;private car;176.01
+FG15 AAA;commercial;818.01
+AB00 CDE;commercial;874.6
