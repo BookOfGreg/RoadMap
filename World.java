@@ -6,7 +6,7 @@ import java.lang.Math;
  * Write a description of class World here.
  * 
  * @author Greg Myers
- * @version 0
+ * @version 10/05/2011
  */
 public class World
 {
@@ -39,22 +39,29 @@ public class World
         int minutes = i/60;
         i=i%60;
         int seconds = i;
-        String t=hours+":"+minutes+":"+seconds;
+        
+        String sHours=Integer.toString(hours);
+        if (sHours.length()==1)
+        {
+            sHours = 0+sHours;
+        }
+        String sMinutes=Integer.toString(minutes);
+        if (sMinutes.length()==1)
+        {
+            sMinutes = 0+sMinutes;
+        }
+        String sSeconds=Integer.toString(seconds);
+        if (sSeconds.length()==1)
+        {
+            sSeconds = 0+sSeconds;
+        }
+        
+        String t=sHours+":"+sMinutes+":"+sSeconds;
         return t;
     }
     
     private void createGraph()
     {
-        /* I was going to try construct a graph using trigonometry 
-        and it was progressing well because I was usign the 
-        cosine rule on the lengths of edges to get node positions, but
-        the code started tripping up on squares and larger polygons. 
-        It seemed like too much effort calculating intersecting circles
-        when I'd rather revise and do my other coursework, but that 
-        is what I would have done next with spare time.
-
-        I will just have to make do with visual and timed as my party pieces.
-         */
         //work out unique nodes
         ArrayList<Node> uniqueNodes = new ArrayList<Node>();
         for (Route r:routes)
@@ -132,8 +139,21 @@ public class World
                 worldView.render(routes,time(tickNo));
             }
         }
+        //pull all vehicles back into the pool.
+        for (Route r:routes)
+        {
+            for (Vehicle v:r.getVehicles())
+            {
+                vehiclePool.add(v);//
+            }
+        }
         worldView.render(routes,time(86400)); //Done at the end to make sure last frame is rendered.
-        //check for speeding.
+        if (!FileHandler.writeSpeedingData(vehiclePool, routes))
+        {
+            System.out.println("error checking speed limits");
+        }
+        FileHandler.writeVehicleCosts(vehiclePool);
+        worldView.render(routes,time(86400),"Program completed, check ~/SectData.txt for log.");
     }
 
     public void update()
@@ -154,6 +174,9 @@ public class World
             if (changingSection != null){
                 for (int i=0; i<changingSection.size();i++)
                 {
+                    changingSection.get(i).addCost(r.getType(),
+                                                   r.getLength()*r.getRate(changingSection.get(i).getType()),
+                                                   r.getLength());
                     if(rand.nextFloat()>0.95)
                     {
                         vehiclePool.add(changingSection.remove(i));
@@ -170,7 +193,7 @@ public class World
                             }
                         }
                         Route r2 = matchingSect.get(rand.nextInt(matchingSect.size()));
-                        int s = r.getSpeed(changingSection.get(i).getType());
+                        int s = r.getSpeed(changingSection.get(i).getType())-10+rand.nextInt(15);;
                         double convertToMPS = (double)s / 3600;
                         changingSection.get(i).setSpeed(convertToMPS);
                         changingSection.get(i).setTarget(r2.otherNode(changingSection.get(i).getTarget()));

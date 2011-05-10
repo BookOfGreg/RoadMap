@@ -2,6 +2,10 @@
 comment0.params=
 comment0.target=Window()
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Window\r\n
-comment1.params=routes\ time
-comment1.target=boolean\ render(java.util.ArrayList,\ java.lang.String)
-numComments=2
+comment1.params=routes\ time\ message
+comment1.target=boolean\ render(java.util.ArrayList,\ java.lang.String,\ java.lang.String)
+comment2.params=g\ routes\ time
+comment2.target=void\ drawThings(java.awt.Graphics,\ java.util.ArrayList,\ java.lang.String)
+comment3.params=routes\ time
+comment3.target=boolean\ render(java.util.ArrayList,\ java.lang.String)
+numComments=4

@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Point here.
+ * My own implementation of the Java Point class but using Doubles instead.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Greg Myers
+ * @version 1
  */
 public class Point
 {
