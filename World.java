@@ -102,7 +102,8 @@ public class World
 
     public int updateSelect()
     {
-        return 10;//stub
+        UserDialog ud = new UserDialog();
+        return ud.getInt("how many milliseconds in a simulated second?");//stub
     }
 
     public void run(int updateLength) throws InterruptedException
@@ -131,6 +132,8 @@ public class World
                 worldView.render(routes,time(tickNo));
             }
         }
+        worldView.render(routes,time(86400)); //Done at the end to make sure last frame is rendered.
+        //check for speeding.
     }
 
     public void update()

@@ -75,8 +75,26 @@ public class Window extends JFrame
                     }
                     r.getLength();
                     v.getDistanceTraveled();
+                    int posX = 0;
+                    int posY = 0;
+                    if (v.getTarget()==r.getNode1().getName())
+                    {
+                        posX = (int)Math.round(r.getNode2().getX());
+                        posY = (int)Math.round(r.getNode2().getY());
+                        posX += (int)Math.round((v.getDistanceTraveled()/r.getLength())*(r.getNode1().getX() - r.getNode2().getX()));
+                        posY += (int)Math.round((v.getDistanceTraveled()/r.getLength())*(r.getNode1().getY() - r.getNode2().getY()));
+                        //start at node 2//
+                    }
+                    else
+                    {
+                        posX = (int)Math.round(r.getNode1().getX());
+                        posY = (int)Math.round(r.getNode1().getY());
+                        posX += (int)Math.round((v.getDistanceTraveled()/r.getLength())*(r.getNode2().getX() - r.getNode1().getX()));
+                        posY += (int)Math.round((v.getDistanceTraveled()/r.getLength())*(r.getNode2().getY() - r.getNode1().getY()));
+                        //start at node 1//
+                    }
 
-                    // smallestx+((distance/length)*dx)
+                    /*// smallestx+((distance/length)*dx)
                     int posX = (int)Math.round(
                             Math.min(r.getNode1().getX(),
                                 r.getNode2().getX()) 
@@ -91,7 +109,7 @@ public class Window extends JFrame
                             +Math.abs(
                                 (v.getDistanceTraveled()/r.getLength())
                                 *(r.getNode1().getY()-r.getNode2().getY())
-                            ));
+                            ));*/
                     g.drawString(v.getRegistration(),posX,posY);
                     
                     g.fillOval(posX-2,
